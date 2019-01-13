@@ -1,0 +1,32 @@
+<div class="container">
+Добавлние нового объявления
+<%= form_for :ad, url: ads_path do |f| %>
+   <div class="form-group">
+  	<lable>Название</lable>
+    <%= f.text_field :title, :class=> 'form-control' %>
+   </div>
+   <div class="form-group">
+  	Описание<br>
+    <%= f.text_area :description, :class=> 'form-control'%>
+   </div>
+   <div class="form-group">
+  	Изображение<br>
+     <%= f.file_field :photo, accept: 'image/png,image/jpeg'%>
+   </div>
+   <div class="form-group">
+  	Адрес<br>
+    <%= f.text_field :adress, :class=> 'form-control'%>
+   </div>
+   <div class="form-group">
+  	Теги<br>
+    <%= f.text_field :tegs, :class=> 'form-control'%>
+   </div>
+   <div class="form-group">
+  	Status<br>
+    <%= f.text_field :status, :class=> 'form-control'%>
+  </div>
+   <div class="form-group">
+    <%= f.submit class: "btn btn-large btn-primary"%>
+   </div>
+ <% end %>
+ </div>
