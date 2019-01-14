@@ -1,6 +1,6 @@
 
-Добавлние нового объявления
-<%= form_for :ad, url: ads_path do |f| %>
+Редактирование объявления
+<%= form_for :ad, url: ad_path(@ad), method: :patch do |f| %>
 <% if @ad.errors.any? %>
 	<% @ad.errors.full_messages.each do |msg| %>
 		<div class="alert alert-danger"><%= msg %></div>

@@ -1,0 +1,9 @@
+<h1><%= @ad.title %></h1>
+<p><%= @ad.description %></p>
+<p><%= @ad.photo %></p>
+<p><%= @ad.adress %></p>
+<p><%= @ad.tegs %></p>
+<p><%= @ad.status %></p>
+<hr>
+<%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-warning" %>
+<%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-danger" %>
