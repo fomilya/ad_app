@@ -17,7 +17,10 @@ class AdsController < ApplicationController
 
 	def update
 		@ad = Ad.find(params[:id])
-
+		if @ad.photo.attached?
+				@ad.photo.purge
+				@ad.photo.attach(params[:photo])
+		end
 		if(@ad.update(ad_params))
 			redirect_to @ad
 		else
@@ -27,15 +30,17 @@ class AdsController < ApplicationController
 
 	def destroy
 		@ad = Ad.find(params[:id])
-
+		if @ad.photo.attached?
+				@ad.photo.purge
+		end
 		@ad.destroy
 
 		redirect_to ads_path
 	end
 
 	def create
-
 		@ad = Ad.new(ad_params)
+
 		if(@ad.save)
 			redirect_to @ad
 		else

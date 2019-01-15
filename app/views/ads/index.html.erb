@@ -2,6 +2,7 @@
 <% @ad.each do |ad| %>
 	<div class="alert alert-light">
 		<h3><%= ad.title %></h3>
+		<p><%= image_tag ad.photo.variant(resize: "100x100") %></p>
 		<p><%= ad.description %></p>
 		<p><%= ad.adress %></p>
 		<p><%= ad.status %></p>
