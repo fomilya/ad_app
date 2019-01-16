@@ -1,6 +1,8 @@
 <h1><%= @ad.title %></h1>
 <p><%= @ad.description %></p>
+<% if @ad.photo.attached? %>
 <p><%= image_tag(@ad.photo) %></p>
+<% end %>
 <p><%= @ad.adress %></p>
 <p><%= @ad.tegs %></p>
 <p><%= @ad.status %></p>

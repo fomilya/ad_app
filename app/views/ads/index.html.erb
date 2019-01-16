@@ -1,11 +1,16 @@
 <h3>Все объявления</h3>
 <% @ad.each do |ad| %>
-	<div class="alert alert-light">
-		<h3><%= ad.title %></h3>
-		<p><%= image_tag ad.photo.variant(resize: "100x100") %></p>
-		<p><%= ad.description %></p>
-		<p><%= ad.adress %></p>
-		<p><%= ad.status %></p>
+	<div class="card">
+		<div class="card-header"><%= ad.title %></div>
+		<div class="card-body">
+		<% if ad.photo.attached? %>
+		<%= image_tag ad.photo.variant(resize: "100x100"), class: ""  %>
+		<% end %>
+		<p class="card-text"><%= truncate(ad.description, :length => 160, :separator => ' ') %></p>
+		<p class="card-text"><%= ad.adress %></p>
+		<p class="card-text"><%= ad.status %></p>
 		<%= link_to "Смотреть", ad_path(ad), :class => 'btn btn-outline-primary' %>
+		</div>
 	</div>
+	<br />
 <% end %>
