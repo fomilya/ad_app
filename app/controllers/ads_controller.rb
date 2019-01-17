@@ -21,7 +21,7 @@ class AdsController < ApplicationController
 				@ad.photo.purge
 				@ad.photo.attach(params[:photo])
 		end
-		
+
 		if(@ad.update(ad_params))
 			redirect_to @ad
 		else

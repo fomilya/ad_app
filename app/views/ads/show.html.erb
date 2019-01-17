@@ -1,41 +1,38 @@
 <h1><%= @ad.title %></h1>
 <p><%= @ad.description %></p>
 <% if @ad.photo.attached? %>
-<p><%= image_tag(@ad.photo) %></p>
+  <p><%= image_tag(@ad.photo) %></p>
 <% end %>
 <p><%= @ad.adress %></p>
 <p><%= @ad.tegs %></p>
 <p><%= @ad.status %></p>
 
+<% if user_signed_in? %>
 <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-warning" %>
 <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-danger" %>
+<% end %>
 <hr>
-  <h5>Все комментарии</h5>
-  <% @ad.comments.each do |comment| %>
-    <div class="alert">
-      1
-      <% comment.username %>
-      <% comment.body %>
-      <%= link_to "Удалить", ad_comment_path(@ad), method: :delete, class: "btn btn-danger" %>
+
+<h5>Все комментарии</h5>
+<% @ad.comments.each do |comment| %>
+  <div class="alert">
+    <strong><%= comment.username %></strong>:
+    <%= comment.body %>
+  </div>
+<% end %>
+    <hr>
+
+    <h5>Добавление коментария</h5>
+    <%= form_for ([@ad, @ad.comments.build]) do |f| %>
+    <div class="form-group">
+      <lable>Имя</lable>
+      <%= f.text_field :username, :class=> 'form-control' %>
+    </div>
+    <div class="form-group">
+      <lable>Комментарий</lable>
+      <%= f.text_area :body, :class=> 'form-control'%>
+    </div>
+    <div class="form-group">
+      <%= f.submit class: "btn btn-primary"%>
     </div>
   <% end %>
-<hr>
-<h5>Добавление коментария</h5>
-<%= form_for ([@ad, @ad.comments.build]) do |f| %>
-<% if @ad.errors.any? %>
-	<% @ad.errors.full_messages.each do |msg| %>
-		<div class="alert alert-danger"><%= msg %></div>
-	<% end %>
-<% end %>
-   <div class="form-group">
-  	<lable>Имя</lable>
-    <%= f.text_field :username, :class=> 'form-control' %>
-   </div>
-   <div class="form-group">
-  	<lable>Комментарий</lable>
-    <%= f.text_area :body, :class=> 'form-control'%>
-   </div>
-   <div class="form-group">
-    <%= f.submit class: "btn btn-primary"%>
-   </div>
- <% end %>
