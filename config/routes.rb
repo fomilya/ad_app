@@ -6,5 +6,7 @@ Rails.application.routes.draw do
 
   get 'persons/profile', as: 'user_root'
 
-  resources :ads
+  resources :ads do
+    resources :comments
+  end
 end
