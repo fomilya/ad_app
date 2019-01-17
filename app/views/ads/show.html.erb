@@ -1,15 +1,27 @@
-<h1><%= @ad.title %></h1>
-<p><%= @ad.description %></p>
-<% if @ad.photo.attached? %>
-  <p><%= image_tag(@ad.photo) %></p>
-<% end %>
-<p><%= @ad.adress %></p>
-<p><%= @ad.tegs %></p>
-<p><%= @ad.status %></p>
+<div class="containet-fluid">
 
+
+<div class="row">
+  <div class="col-4">
+
+    <% if @ad.photo.attached? %>
+      <%= image_tag @ad.photo.variant(resize: "300x300"), class:"img-fluid"%>
+    <% else %>
+      <p>No photo</p>
+    <% end %>
+
+  </div>
+  <div class="col-8">
+    <h5><%= @ad.title %></h5>
+    <p class=text-justify><%= @ad.description %></p>
+    <span class="text-secondary">Адрес: </span><%= @ad.adress %><br>
+    <span class="text-secondary">Теги: </span><%= @ad.tegs %><br>
+    <span class="text-secondary">Статус: </span><%= @ad.status %><br>
+  </div>
+</div>
 <% if user_signed_in? %>
-<%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-warning" %>
-<%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-danger" %>
+  <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-warning" %>
+  <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-danger" %>
 <% end %>
 <hr>
 
@@ -20,19 +32,20 @@
     <%= comment.body %>
   </div>
 <% end %>
-    <hr>
+<hr>
 
-    <h5>Добавление коментария</h5>
-    <%= form_for ([@ad, @ad.comments.build]) do |f| %>
-    <div class="form-group">
-      <lable>Имя</lable>
-      <%= f.text_field :username, :class=> 'form-control' %>
-    </div>
-    <div class="form-group">
-      <lable>Комментарий</lable>
-      <%= f.text_area :body, :class=> 'form-control'%>
-    </div>
-    <div class="form-group">
-      <%= f.submit class: "btn btn-primary"%>
-    </div>
-  <% end %>
+<h5>Добавление коментария</h5>
+<%= form_for ([@ad, @ad.comments.build]) do |f| %>
+<div class="form-group">
+  <lable>Имя</lable>
+  <%= f.text_field :username, :class=> 'form-control' %>
+</div>
+<div class="form-group">
+  <lable>Комментарий</lable>
+  <%= f.text_area :body, :class=> 'form-control'%>
+</div>
+<div class="form-group">
+  <%= f.submit class: "btn btn-primary"%>
+</div>
+<% end %>
+</div>
