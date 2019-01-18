@@ -9,6 +9,7 @@ class AdsController < ApplicationController
 
 	def show
 		@ad = Ad.find(params[:id])
+		@user = User.find(@ad.user_id)
 	end
 
 	def edit
@@ -41,7 +42,7 @@ class AdsController < ApplicationController
 
 	def create
 		@ad = Ad.new(ad_params)
-
+		@ad.user_id = current_user.id
 		if(@ad.save)
 			redirect_to @ad
 		else

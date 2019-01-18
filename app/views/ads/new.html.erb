@@ -1,5 +1,5 @@
 
-Добавлние нового объявления
+<h5>Добавлние нового объявления</h5>
 <%= form_for :ad, url: ads_path do |f| %>
 <% if @ad.errors.any? %>
 	<% @ad.errors.full_messages.each do |msg| %>
@@ -15,7 +15,7 @@
     <%= f.text_area :description, :class=> 'form-control'%>
    </div>
    <div class="form-group">
-  	Изображение<br>
+  	Изображение 
      <%= f.file_field :photo, direct_upload: true, accept: 'image/png,image/jpeg'%>
    </div>
    <div class="form-group">

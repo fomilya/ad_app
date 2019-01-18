@@ -17,11 +17,17 @@
       </span><%= @ad.adress %><br>
       <span class="text-secondary">Теги:
       </span><%= @ad.tegs %><br>
-      <span class="text-secondary">Статус:
-      </span><%= @ad.status %><br>
+      <span class="text-secondary">Статус:</span>
+      <% if @ad.status? %>
+      Активно <br>
+      <% else %>
+      Неактивно <br>
+      <% end %>
+      <span class="text-secondary">Пользователь:
+      </span><%= @user.email %><br>
     </div>
   </div>
-  <% if user_signed_in? %>
+  <% if current_user.id == @user.id %>
     <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-outline-warning" %>
     <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-outline-danger" %>
   <% end %>
