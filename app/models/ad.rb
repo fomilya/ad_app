@@ -1,4 +1,5 @@
 class Ad < ApplicationRecord
+	include Taggable
 	belongs_to :user
 	has_one_attached :photo
 	has_many :comments

@@ -15,7 +15,7 @@
     <%= f.text_area :description, :class=> 'form-control'%>
    </div>
    <div class="form-group">
-  	Изображение 
+  	Изображение
      <%= f.file_field :photo, direct_upload: true, accept: 'image/png,image/jpeg'%>
    </div>
    <div class="form-group">
@@ -23,6 +23,9 @@
     <%= f.text_field :adress, :class=> 'form-control'%>
    </div>
    <div class="form-group">
+
+	  <%= f.label :tag_names %><br>
+  	<%= f.text_field :tag_names %>
   	Теги<br>
     <%= f.text_field :tegs, :class=> 'form-control'%>
    </div>
@@ -31,6 +34,6 @@
     <%= f.text_field :status, :class=> 'form-control'%>
   </div>
    <div class="form-group">
-    <%= f.submit class: "btn btn-primary"%>
+    <%= f.submit class: "btn btn-outline-primary"%>
    </div>
  <% end %>

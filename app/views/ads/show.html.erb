@@ -16,7 +16,10 @@
       <span class="text-secondary">Адрес:
       </span><%= @ad.adress %><br>
       <span class="text-secondary">Теги:
-      </span><%= @ad.tegs %><br>
+      <% @ad.tags.each do |tag| %>
+        </span><%= tag.name %>,
+      <% end %>
+      <br>
       <span class="text-secondary">Статус:</span>
       <% if @ad.status? %>
       Активно <br>

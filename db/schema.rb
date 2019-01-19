@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_065528) do
+ActiveRecord::Schema.define(version: 2019_01_19_074405) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 2019_01_18_065528) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ad_id"], name: "index_comments_on_ad_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.integer "ad_id"
+    t.integer "tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ad_id"], name: "index_taggings_on_ad_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
