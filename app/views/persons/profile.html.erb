@@ -1,18 +1,18 @@
-<h1>Личный кабинет</h1>
+<h3>Личный кабинет</h3>
 <% if user_signed_in? %>
-    <span>Здравствуйте, <%= current_user.email %></span>
-    <br>
-    <span>Аватар
-      <% if current_user.avatar.attached? %>
-      <%= image_tag current_user.avatar.variant(resize: "100x100"), class: "rounded-circle" %>
-      <% end %>
-    </span>
-    <br>
+  <% if current_user.avatar.attached? %>
+    <%= image_tag current_user.avatar.variant(resize: "100x100"), class: "rounded-circle" %><br>
+  <% end %>
 
-    <%= link_to 'Редактировать профиль', edit_user_registration_path %>
-    <br>
-    <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
-
+  <%= current_user.email %>
+  <br>
+  <%= link_to 'Редактировать профиль', edit_user_registration_path %>
+  <br>
+  <%= link_to 'Выйти', destroy_user_session_path, :method => :delete %>
+  <hr>
+  <%= render template: "ads/index" %>
 <% else %>
-    <%= link_to 'Войти', new_user_session_path %> или <%= link_to 'Зарегистрироваться', new_user_registration_path %>
+  <%= link_to 'Войти', new_user_session_path %>
+  или
+  <%= link_to 'Зарегистрироваться', new_user_registration_path %>
 <% end %>

@@ -13,26 +13,30 @@
     <div class="col-8">
       <h5><%= @ad.title %></h5>
       <p class="text-justify"><%= @ad.description %></p>
-      <span class="text-secondary">Адрес:
-      </span><%= @ad.adress %><br>
-      <span class="text-secondary">Теги:
-      <% @ad.tags.each do |tag| %>
-        </span><%= tag.name %>,
+      <span class="text-secondary">Адрес:</span>
+      <%= @ad.adress %><br>
+      <span class="text-secondary">Теги:</span>
+        <% @ad.tags.each do |tag| %>
+        <span class="badge badge-secondary"><%= tag.name %></span>
       <% end %>
       <br>
       <span class="text-secondary">Статус:</span>
       <% if @ad.status? %>
-      Активно <br>
+        Активно
+        <br>
       <% else %>
-      Неактивно <br>
+        Неактивно
+        <br>
       <% end %>
       <span class="text-secondary">Пользователь:
       </span><%= @user.email %><br>
     </div>
   </div>
-  <% if current_user.id == @user.id %>
-    <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-outline-warning" %>
-    <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-outline-danger" %>
+  <% if current_user != nil %>
+    <% if current_user.id == @user.id %>
+      <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-outline-warning" %>
+      <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-outline-danger" %>
+    <% end %>
   <% end %>
   <hr>
 

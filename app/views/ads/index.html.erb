@@ -15,8 +15,10 @@
 				</div>
 				<div class="col-10">
 					<p class="card-text"><%= truncate(ad.description, :length => 160, :separator => ' ') %></p>
-					<p class="card-text"><%= ad.adress %></p>
-					<p class="card-text"><%= ad.status %></p>
+					<span class="text-secondary">Дата:
+		      </span><%=  %><br>
+					<span class="text-secondary">Пользователь:
+		      </span><%= User.find(ad.user_id).email %><br>
 
 				</div>
 			</div>

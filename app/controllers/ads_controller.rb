@@ -1,6 +1,6 @@
 class AdsController < ApplicationController
 	def index
-		@ad = Ad.all
+		@ad = Ad.where(status: 1)
 	end
 
 	def new
