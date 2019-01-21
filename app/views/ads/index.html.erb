@@ -16,7 +16,7 @@
 				<div class="col-10">
 					<p class="card-text"><%= truncate(ad.description, :length => 160, :separator => ' ') %></p>
 					<span class="text-secondary">Дата:
-		      </span><%=  %><br>
+		      </span><%= ad.created_at.strftime("%d.%m.%Y %H:%M") %><br>
 					<span class="text-secondary">Пользователь:
 		      </span><%= User.find(ad.user_id).email %><br>
 
@@ -24,6 +24,7 @@
 			</div>
 			<div class="row">
 				<div class="col">
+					<br>
 					<%= link_to "Смотреть", ad_path(ad), :class => 'btn btn-outline-primary' %>
 				</div>
 			</div>

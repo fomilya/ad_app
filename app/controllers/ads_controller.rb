@@ -14,13 +14,16 @@ class AdsController < ApplicationController
 
 	def edit
 		@ad = Ad.find(params[:id])
+
 	end
 
 	def update
 		@ad = Ad.find(params[:id])
+		@img = @ad.photo
 		if @ad.photo.attached?
 				@ad.photo.purge
 				@ad.photo.attach(params[:photo])
+
 		end
 
 		if(@ad.update(ad_params))
