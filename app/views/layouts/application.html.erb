@@ -12,28 +12,29 @@
   <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
     <h5 class="my-0 mr-md-auto font-weight-bold">Доска объявлений</h5>
 
-      <div class="input-group col-md-3">
-        <input type="text" class="form-control" placeholder="Поиск">
-        <div class="input-group-append">
-          <button class="btn btn-outline-secondary" type="button">Найти</button>
-        </div>
-      </div>
+    <%= form_tag(ads_path, :method => "get", id: "search-form", class: "input-group col-md-3") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Найти", class: "form-control" %>
+      <%= content_tag :div, class: "input-group-append" do -%>
+        <%= submit_tag "Найти", class: "btn btn-outline-primary" %>
+      <% end -%>
 
-    <nav class="my-2 my-md-0 mr-md-3">
-      <span><%= link_to "Все объявления", home_path, :class=> "p-2 text-dark" %></span>
-      <% if user_signed_in? %>
-        <span><%= link_to "Новое объявление", new_ad_path, :class=> "p-2 text-dark"%></span>
-        <span><%= link_to "Личный кабинет", user_root_path, :class=> "p-2 text-dark"%></span>
-        <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class:"btn btn-outline-primary" %>
-      <% else %>
-        <a class="btn btn-outline-primary" href="/users/sign_in">Войти</a>
-      <% end %>
-    </nav>
+  <% end %>
 
+  <nav class="my-2 my-md-0 mr-md-3">
+    <span><%= link_to "Все объявления", home_path, :class=> "p-2 text-dark" %></span>
+    <% if user_signed_in? %>
+      <span><%= link_to "Новое объявление", new_ad_path, :class=> "p-2 text-dark"%></span>
+      <span><%= link_to "Личный кабинет", user_root_path, :class=> "p-2 text-dark"%></span>
+      <%= link_to 'Выйти', destroy_user_session_path, :method => :delete, class:"btn btn-outline-primary" %>
+    <% else %>
+      <a class="btn btn-outline-primary" href="/users/sign_in">Войти</a>
+    <% end %>
+  </nav>
+
+</div>
+<body>
+  <div class="container">
+    <%= yield %>
   </div>
-  <body>
-    <div class="container">
-      <%= yield %>
-    </div>
-  </body>
+</body>
 </html>

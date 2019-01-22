@@ -2,8 +2,8 @@ module Taggable
   extend ActiveSupport::Concern
 
   included do
-    has_many :taggings
-    has_many :tags, :through => :taggings
+    has_many :taggings, dependent: :destroy
+    has_many :tags, :through => :taggings, dependent: :destroy
     after_save :save_tags
   end
 

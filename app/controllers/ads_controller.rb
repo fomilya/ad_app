@@ -1,6 +1,11 @@
 class AdsController < ApplicationController
 	def index
 		@ad = Ad.where(status: 1)
+			if params[:search]
+				@ad = Ad.search(params[:search]).left_joins(:user).left_joins(:taggings).left_joins(:tags).order("created_at DESC").distinct
+				else
+				@ad = Ad.where(status: 1)
+			end
 	end
 
 	def new
