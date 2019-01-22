@@ -1,4 +1,5 @@
 class AdsController < ApplicationController
+
 	def index
 		@ad = Ad.where(status: 1)
 			if params[:search]
@@ -19,13 +20,11 @@ class AdsController < ApplicationController
 
 	def edit
 		@ad = Ad.find(params[:id])
-
 	end
 
 	def update
 		@ad = Ad.find(params[:id])
-		@img = @ad.photo
-		if @ad.photo.attached?
+		if params[:photo].present?
 				@ad.photo.purge
 				@ad.photo.attach(params[:photo])
 
@@ -59,6 +58,6 @@ class AdsController < ApplicationController
 	end
 
 	private def ad_params
-		params.require(:ad).permit(:title, :description, :photo, :adress, :tegs, :status, :tag_names)
+			params.require(:ad).permit(:title, :description, :adress, :photo, :tegs, :status, :tag_names)
 	end
 end

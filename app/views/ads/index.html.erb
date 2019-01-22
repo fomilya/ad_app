@@ -1,19 +1,21 @@
 <h3>Все объявления</h3>
+<div class="row">
 <% @ad.each do |ad| %>
+<div class="col-6">
 	<div class="card">
 		<div class="card-header">
 			<strong><%= ad.title %></strong>
 		</div>
 		<div class="card-body">
 			<div class="row">
-				<div class="col-2">
+				<div class="col-3">
 					<% if ad.photo.attached? %>
 						<%= image_tag ad.photo.variant(resize: "100x100"), class:"img-fluid" %>
 					<% else %>
 						<p class="text-center align-middle">No photo</p>
 					<% end %>
 				</div>
-				<div class="col-10">
+				<div class="col-9">
 					<p class="card-text"><%= truncate(ad.description, :length => 160, :separator => ' ') %></p>
 					<span class="text-secondary">Дата:
 		      </span><%= ad.created_at.strftime("%d.%m.%Y %H:%M") %><br>
@@ -30,5 +32,7 @@
 			</div>
 		</div>
 	</div>
-	<br/>
+	<br>
+	</div>
 <% end %>
+</div>

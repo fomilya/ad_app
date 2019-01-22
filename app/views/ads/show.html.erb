@@ -13,6 +13,8 @@
     <div class="col-8">
       <h5><%= @ad.title %></h5>
       <p class="text-justify"><%= @ad.description %></p>
+      <span class="text-secondary">Дата:
+      </span><%= @ad.created_at.strftime("%d.%m.%Y %H:%M") %><br>
       <span class="text-secondary">Адрес:</span>
       <%= @ad.adress %><br>
       <span class="text-secondary">Теги:</span>
@@ -34,7 +36,7 @@
   </div>
   <% if current_user != nil %>
     <% if current_user.id == @user.id %>
-    <br>
+      <br>
       <%= link_to "Редактировать", edit_ad_path(@ad), class: "btn btn-outline-warning" %>
       <%= link_to "Удалить", ad_path(@ad), method: :delete, data:{confirm: "Удалить?"}, class: "btn btn-outline-danger" %>
     <% end %>
@@ -61,7 +63,7 @@
     <%= f.text_area :body, :class=> 'form-control'%>
   </div>
   <div class="form-group">
-    <%= f.submit class: "btn btn-outline-primary"%>
+    <%= f.submit "Добавить комментарий",  class: "btn btn-outline-primary"%>
   </div>
 <% end %>
 </div>
