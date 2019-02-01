@@ -24,9 +24,15 @@
 
 <div class="form-group">
 
-	<%= props = @ad.tags.each.to_json%>
+	<%= props = @ad.tags.each.to_json(except: [:created_at, :updated_at])%>
 
-	<div id="app" :options="<%= props %>" :value="<%= props %>" ></div>
+	<%= content_tag :div,
+	  id: "app",
+	  data: {
+			value: [],
+      options: :props
+	  } do %>
+	<% end %>
 </div>
 
 <div class="form-group">
