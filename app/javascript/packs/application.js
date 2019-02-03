@@ -1,12 +1,19 @@
-import Vue from 'vue'
+import Vue from '../../../node_modules/vue/dist/vue.esm.js'
+import Multiselect from 'vue-multiselect'
 import App from '../app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const el = '#app'
-  const app = new Vue({
-    el,
+  let element = document.getElementById("app")
+  let opt = element.dataset
+  console.log(opt.options)
+  console.log(opt.value);
+  new Vue({
+    el: '#app',
+    data: {
+      options: opt.options,
+      value: opt.value
+    },
     render: h => h(App)
-  })
 
-  console.log(app)
+  })
 })

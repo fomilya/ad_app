@@ -24,13 +24,11 @@
 
 <div class="form-group">
 
-	<%= props = @ad.tags.each.to_json(except: [:created_at, :updated_at])%>
-
 	<%= content_tag :div,
 	  id: "app",
 	  data: {
 			value: [],
-      options: :props
+      options: @ad.tags.each.to_json(except: [:created_at, :updated_at])
 	  } do %>
 	<% end %>
 </div>

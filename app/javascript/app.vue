@@ -1,9 +1,9 @@
 <template>
-<div>
-  <label class="typo__label">Теги</label>
-  <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
-  <pre class="language-json"><code>{{ value  }}</code></pre>
-</div>
+  <div>
+    <label class="typo__label">Tagging</label>
+    <multiselect v-model="value" tag-placeholder="Add this as new tag" placeholder="Search or add a tag" label="name" track-by="code" :options="options" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
+    <pre class="language-json"><code>{{ value  }}</code></pre>
+  </div>
 </template>
 
 <script>
@@ -13,11 +13,9 @@ export default {
   components: {
     Multiselect
   },
-  data () {
-    return {
-      value: [ ],
-      options: [ ]
-    }
+  props: {
+    value: value,
+    options: options
   },
   methods: {
     addTag (newTag) {
@@ -32,6 +30,4 @@ export default {
 }
 </script>
 
-<style scoped>
-
-</style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
